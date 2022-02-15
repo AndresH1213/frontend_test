@@ -1,0 +1,59 @@
+h5 {
+  color: aliceblue;
+  text-shadow: #ccc 1px 0 10px;
+}
+
+.username-title {
+  display: flex;
+  justify-content: center;
+  color: aliceblue;
+}
+
+.username-title i {
+  font-size: 1.8rem;
+  margin-top: -3px;
+  margin-right: 5px;
+}
+
+.container-table {
+  display: flex;
+  flex-direction: row;
+}
+
+table {
+  color: aliceblue;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  margin-top: 2rem;
+  border: 2px solid;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.form-control {
+  color: aliceblue;
+  background-color: transparent;
+  margin-bottom: 3px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control input {
+  text-align: center;
+}
+
+.btn-logout {
+  border-radius: 0.3em;
+  border: 2px transparent solid;
+  cursor: pointer;
+  color: aliceblue;
+  background-color: var(--secondary-color-light);
+  padding: 2px 5px;
+}
+
+.btn-logout:hover {
+  background-color: transparent;
+  transform: translateX(-4px);
+  border: 2px black solid;
+  color: black;
+}

@@ -1,0 +1,29 @@
+<!-- fadeInDown -->
+<div class="container middle">
+    <p-card>
+        <div class="p-card-content">
+            <h1 class="mb-0">Is Anagram?</h1>
+            <div class="fadeIn first mt-2">
+                <i class="pi pi-user" style="font-size: 2rem"></i>
+                <i class="pi pi-sign-in" *ngIf="!register" style="font-size: 2rem"></i>
+                <i class="pi pi-cloud-upload ms-2" *ngIf="register" style="font-size: 2rem"></i>
+            </div>
+
+            <div>
+                <h2 [ngClass]="classSignIn" (click)="signInForm()"> Sign In </h2>
+                <h2 [ngClass]="classSignUp" (click)="signUpForm()">Sign Up </h2>
+            </div>
+
+            <!-- Login Form -->
+            <form autocomplete="off" class="animate__animated animate__fadeIn center-items">
+                <input type="text" [(ngModel)]='name' placeholder="name" name="username">
+                <input type="password" id="password" [(ngModel)]="password" placeholder="password" name='password'>
+                <input type="password" *ngIf="register" [(ngModel)]="password2" placeholder="password" name='password2'>
+                <button type="submit" (click)="logIn()" *ngIf="!register">Log In</button>
+                <button type="submit" (click)="createUser()" *ngIf="register">Sign Up</button>
+            </form>
+            <a routerLink="/home">&larr; Go Back</a>
+
+        </div>
+    </p-card>
+</div>

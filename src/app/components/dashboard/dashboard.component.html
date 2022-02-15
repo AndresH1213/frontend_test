@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="username-title">
+        <i class="pi pi-user"></i>
+        <h4>{{ username }}</h4>
+    </div>
+    <h5 *ngIf="msgAdded">Word pairs added...</h5>
+    <div class="container-table p-fluid">
+        <div class="col-4 md:col-4">
+            <div class="p-inputgroup">
+                <span class="btn-logout me-1 center-items" (click)="logOut()"><small><i
+                            class="pi pi-arrow-circle-left"></i>..LogOut</small></span>
+                <span class="p-inputgroup-addon"><i class="pi pi-book"></i></span>
+                <input type="text" pInputText placeholder="Word..." [(ngModel)]="word1">
+            </div>
+        </div>
+
+        <div class="col-4 md:col-4">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-book"></i></span>
+                <input type="text" pInputText placeholder="Word..." [(ngModel)]="word2">
+            </div>
+        </div>
+
+        <div class="col-4 md:col-4 ms-2">
+            <div class="p-inputgroup" style="cursor: pointer;">
+                <span class="p-inputgroup-addon" (click)="addWords()">Add Word Pair</span>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="wordPairs.length" class="animate__animated animate__fadeIn">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Word 1</th>
+                    <th>Word 2</th>
+                    <th>isAnagram</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pair of wordPairs">
+                    <td>{{pair.word1}}</td>
+                    <td>{{pair.word2}}</td>
+                    <td>
+                        {{pair.isAnagram}}
+                        <i *ngIf="!pair.isAnagram" class="pi pi-times ms-1"></i>
+                        <i *ngIf="pair.isAnagram" class="pi pi-check ms-1"></i>
+                    </td>
+                    <td>
+                        <i class="pi pi-pencil" style="cursor: pointer;" (click)="editMode(pair._id)"></i>
+                        <i class="pi pi-trash ms-2" style="cursor: pointer;" (click)="deletePair(pair._id)"></i>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="mt-5">
+        <p-card *ngIf="!wordPairs.length">
+            Insert your first pair of words please....
+        </p-card>
+    </div>
+
+</div>
+
+<!--========================== MODAL ==========================-->
+<p-dialog header="Update WordPair" [(visible)]="displayModal" [modal]="true" [style]="{width: '40vw'}"
+    [draggable]="false" [closable]="true" [resizable]="false">
+    <div *ngIf="modalError" class="error-message">
+        Please fill all the fields
+    </div>
+    <form autocomplete="off">
+        <div class="form-control">
+            <label for="word1">Word 1</label>
+            <input type="text" [(ngModel)]="editingWord1" placeholder="words..." name="word1">
+        </div>
+        <div class="form-control">
+            <label for="word2">Word 2</label>
+            <input type="text" [(ngModel)]="editingWord2" placeholder="words..." name="word2">
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <p-button (onClick)="updatePair()">update</p-button>
+    </ng-template>
+</p-dialog>
